@@ -76,7 +76,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  propTypes: {
 	    collapsed: _react.PropTypes.bool,
 	    defaultCollapsed: _react.PropTypes.bool,
-	    nodeLabel: _react.PropTypes.node.isRequired
+	    nodeLabel: _react.PropTypes.node.isRequired,
+	    iconOpenClassNames: _react.PropTypes.string,
+	    iconCollapsedClassNames: _react.PropTypes.string
 	  },
 	
 	  getInitialState: function getInitialState() {
@@ -99,9 +101,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var _props2$className = _props2.className;
 	    var className = _props2$className === undefined ? '' : _props2$className;
 	    var nodeLabel = _props2.nodeLabel;
+	    var iconOpenClassNames = _props2.iconOpenClassNames;
+	    var iconCollapsedClassNames = _props2.iconCollapsedClassNames;
 	    var children = _props2.children;
 	
-	    var rest = _objectWithoutProperties(_props2, ['collapsed', 'className', 'nodeLabel', 'children']);
+	    var rest = _objectWithoutProperties(_props2, ['collapsed', 'className', 'nodeLabel', 'iconOpenClassNames', 'iconCollapsedClassNames', 'children']);
 	
 	    var arrowClassName = 'tree-view_arrow';
 	    var containerClassName = 'tree-view_children';
@@ -110,12 +114,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      containerClassName += ' tree-view_children-collapsed';
 	    }
 	
+	    var arrowClassNames = collapsed ? iconCollapsedClassNames : iconOpenClassNames;
+	
 	    var arrow = _react2['default'].createElement(
 	      'div',
 	      _extends({}, rest, {
 	        className: className + ' ' + arrowClassName,
 	        onClick: this.handleClick }),
-	      '▾'
+	      _react2['default'].createElement('span', { className: arrowClassNames })
 	    );
 	
 	    return _react2['default'].createElement(
