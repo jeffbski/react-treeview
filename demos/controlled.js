@@ -35,6 +35,12 @@ const Lists = React.createClass({
 
   render() {
     const collapsedBookkeeping = this.state.collapsedBookkeeping;
+
+    const iconProps = {
+      iconOpenClassNames: 'fa fa-minus-square',
+      iconCollapsedClassNames: 'fa fa-plus-square',
+    };
+
     return (
       <div>
         <button onClick={this.collapseAll}>Collapse all</button>
@@ -50,6 +56,7 @@ const Lists = React.createClass({
               key={i}
               nodeLabel={label}
               collapsed={collapsedBookkeeping[i]}
+              {...iconProps}
               onClick={this.handleClick.bind(null, i)}>
               {node.map(entry => <div className="info" key={entry}>{entry}</div>)}
             </TreeView>

@@ -5,6 +5,8 @@ const TreeView = React.createClass({
     collapsed: PropTypes.bool,
     defaultCollapsed: PropTypes.bool,
     nodeLabel: PropTypes.node.isRequired,
+    iconOpenClassNames: PropTypes.string,
+    iconCollapsedClassNames: PropTypes.string,
   },
 
   getInitialState() {
@@ -23,6 +25,8 @@ const TreeView = React.createClass({
       collapsed = this.state.collapsed,
       className = '',
       nodeLabel,
+      iconOpenClassNames,
+      iconCollapsedClassNames,
       children,
       ...rest,
     } = this.props;
@@ -34,12 +38,16 @@ const TreeView = React.createClass({
       containerClassName += ' tree-view_children-collapsed';
     }
 
+    const arrowClassNames = (collapsed) ?
+                            iconCollapsedClassNames :
+                            iconOpenClassNames;
+
     const arrow =
       <div
         {...rest}
         className={className + ' ' + arrowClassName}
         onClick={this.handleClick}>
-        ▾
+        <span className={arrowClassNames}></span>
       </div>;
 
     return (
